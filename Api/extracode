@@ -1,0 +1,48 @@
+// exports.searchData = async (req, res) => {
+//     try {
+//         console.log("Query Param : ", req.query);
+//         const queryParam = req.query.searchValue; // Extracting searchValue from query
+//         console.log("Query Param : ", queryParam);
+
+//         const allJobs = await jobdetails.findAll();
+
+//         // Filter jobs based on query parameters
+//         const filteredJobs = allJobs.filter(item => {
+//             const jobLocationIncludes = Array.isArray(item.joblocation) && item.joblocation.includes(queryParam);
+//             const educationIncludes = JSON.parse(item.Education).some(edu => edu.study === queryParam);
+//             const scheduleIncludes = JSON.parse(item.Schedule).some(sch => sch.schedule === queryParam);
+//             const jobTypeIncludes = JSON.parse(item.jobtype).some(jt => jt.jtype === queryParam);
+//             const showPayByIncludes = JSON.parse(item.showPayBy).some(pay => pay.Maximum === queryParam || pay.Minimum === queryParam);
+//             const supplementalPayIncludes = JSON.parse(item.SupplementalPay).some(suppay => suppay.suppay === queryParam);
+//             const benefitsIncludes = JSON.parse(item.Benefits).some(benefit => benefit.benefit === queryParam);
+//             const skillIncludes = JSON.parse(item.Skill).some(skill => skill.value === queryParam);
+
+//             return (
+//                 (item.jobtitle === queryParam) ||
+//                 jobLocationIncludes ||
+//                 educationIncludes ||
+//                 scheduleIncludes ||
+//                 jobTypeIncludes ||
+//                 (item.peoplehire === queryParam) ||
+//                 (item.startdate === queryParam) ||
+//                 (item.lastdate === queryParam) ||
+//                 (item.candidatesCV === queryParam) ||
+//                 showPayByIncludes ||
+//                 supplementalPayIncludes ||
+//                 benefitsIncludes ||
+//                 skillIncludes ||
+//                 (item.experience === queryParam) ||
+//                 (item.Recruitmenttimeline === queryParam) ||
+//                 (item.company === queryParam) ||
+//                 (item.Jobdescription.includes(queryParam))
+//             );
+//         });
+
+//         res.json(filteredJobs);
+//         console.log(filteredJobs);
+
+//     } catch (error) {
+//         console.error('Error fetching jobs:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// }  do not delete this code
