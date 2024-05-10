@@ -1,6 +1,5 @@
 var express = require('express');
-// const {onRequest} = require("firebase-functions/v2/https");
-// const logger = require("firebase-functions/logger");
+
  var app = express();
 app.use(express.json());
 var cors = require('cors');
