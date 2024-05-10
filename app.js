@@ -1,4 +1,6 @@
 var express = require('express');
+const {onRequest} = require("firebase-functions/v2/https");
+const logger = require("firebase-functions/logger");
  var app = express();
 app.use(express.json());
 var cors = require('cors');
@@ -62,7 +64,14 @@ jobApply.sync({ alter: true }) // Use { force: true } to drop and recreate table
 .catch((err) => {
   console.error('An error occurred while synchronizing the models:', err);
 });
+var admin = require("firebase-admin");
 
+var serviceAccount = require("./Api/db/firebasedatabase.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://careerdoorapi-default-rtdb.firebaseio.com"
+})
 app.use('/company', companyRouter);
 app.use('/jobs',jobDatailrouter);
 app.use('/jobseeker',jobseekerRouter);
