@@ -1,6 +1,5 @@
 var express = require('express');
-
- var app = express();
+var app = express();
 app.use(express.json());
 var cors = require('cors');
 app.use(cors());
@@ -15,6 +14,9 @@ const companyRouter = require('./Api/routers/companyRouter.js')
 const jobseekerRouter = require('./Api/routers/jobseekerRouter.js')
 const jobapplyRouter = require('./Api/routers/jobapplyRouter.js')
 const comAPIRouter = require('./Api/routers/commonapiRouter.js')
+const {onRequest} = require("firebase-functions/v2/https");
+const logger = require("firebase-functions/logger");
+
 app.use('/uploads', express.static('uploads'));
 app.use((req, res, next) => {
    res.header('Access-Control-Allow-Origin', '*');
