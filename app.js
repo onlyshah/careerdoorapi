@@ -14,8 +14,8 @@ const companyRouter = require('./Api/routers/companyRouter.js')
 const jobseekerRouter = require('./Api/routers/jobseekerRouter.js')
 const jobapplyRouter = require('./Api/routers/jobapplyRouter.js')
 const comAPIRouter = require('./Api/routers/commonapiRouter.js')
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+// const {onRequest} = require("firebase-functions/v2/https");
+// const logger = require("firebase-functions/logger");
 
 app.use('/uploads', express.static('uploads'));
 app.use((req, res, next) => {
@@ -65,14 +65,16 @@ jobApply.sync({ alter: true }) // Use { force: true } to drop and recreate table
 .catch((err) => {
   console.error('An error occurred while synchronizing the models:', err);
 });
-var admin = require("firebase-admin");
+// var admin = require("firebase-admin");
 
-var serviceAccount = require("./Api/db/firebasedatabase.json");
+// var serviceAccount = require("./Api/db/firebasedatabase.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://careerdoorapi-default-rtdb.firebaseio.com"
-})
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://careerdoorapi-default-rtdb.firebaseio.com"
+// })
+const swaggerSetup = require('./swagger');
+swaggerSetup(app);
 app.use('/company', companyRouter);
 app.use('/jobs',jobDatailrouter);
 app.use('/jobseeker',jobseekerRouter);

@@ -1,0 +1,41 @@
+```
+└── 📁CAREERDOORAPI
+    └── .firebaserc
+    └── .gitignore
+    └── 📁Api
+        └── .gitignore
+        └── 📁Controller
+            └── commonAPI.js
+            └── compnayDetails.js
+            └── jobApply.js
+            └── jobDetail.js
+            └── jobseeker.js
+        └── 📁db
+            └── DBconnection.js
+            └── firebaseConfig.js
+            └── firebasedatabase.json
+        └── extracode
+        └── 📁model
+            └── companyDetails.js
+            └── Email.js
+            └── jobApply.js
+            └── jobdetails.js
+            └── jobseeker.js
+        └── 📁routers
+            └── commonapiRouter.js
+            └── companyRouter.js
+            └── jobapplyRouter.js
+            └── jobdetailRouter.js
+            └── jobseekerRouter.js
+    └── app.js
+    └── database.rules.json
+    └── firebase.json
+    └── index.js
+    └── package-lock.json
+    └── package.json
+    └── 📁uploads
+        └── 📁companylogo
+            └── companylogo2024-2-12-1661187904432.png
+        └── 📁resumes
+            └── resumes2024-2-12-NikunjShahupdate.pdf
+```

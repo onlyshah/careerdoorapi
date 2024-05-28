@@ -68,3 +68,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// "serve": "firebase emulators:start --only functions",
+// "shell": "firebase functions:shell",
+// "deploy": "firebase deploy --only functions",
+// "logs": "firebase functions:log"
