@@ -6,7 +6,7 @@ const jobdetails = require('../model/jobdetails');
 const secretKey = 'careerdoor';
 
 exports.createcompanyDetails = async (req, res) => {
-  console.log(req.file); // Log the file information
+  console.log(req.file.path); // Log the file information
   console.log(req.body);
 
   // Combine email and mobile number checks for efficiency

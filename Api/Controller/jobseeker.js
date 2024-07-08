@@ -25,7 +25,7 @@ exports.createjobseeker = async (req, res) => {
                     candidatecv: req.file.path,
                     password: hash
                 })
-                console.log('userdata', jobseeker)
+                console.log('userdata', jobseeker.dataValues)
                 const task = await jobseekerDeails.create(jobseeker.dataValues);
                 return res.json(task);
             }
@@ -66,7 +66,8 @@ exports.createjobseeker = async (req, res) => {
     }
 }
 exports.jobseekerLogin =  async (req, res) => {
-    const { email, password } = req.body;
+    const { password } = req.body;
+     let email =req.body.email
     try {
       const user = await jobseekerDeails.findOne({ where: { email } });
   

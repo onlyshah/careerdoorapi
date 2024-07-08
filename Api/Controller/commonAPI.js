@@ -5,6 +5,8 @@ const jobapply = require('../model/jobApply');
 const { Op } = require('sequelize');
 const Mailgun = require('mailgun-js');
 const formData = require('form-data');
+const nodemailer = require('nodemailer');
+const fs = require('fs');
 
 const mailgunApiKey = 'babf0e91191042d22d96571022654569-2175ccc2-1deb89ce';
 const mailgunDomain = 'sandbox-123.mailgun.org'; // Update this with your Mailgun domain
@@ -132,31 +134,53 @@ exports.sendEmail = async (req, res) => {
 };
 
 
-// exports.sendEmail = async (req, res) => {
-//   const { email, subject, body } = req.body;
+exports.sendEmail = async (req, res) => {
+  const { email, subject, body } = req.body;
 
-//   try {
-//     const data = {
-//       from: email,
-//       to: "diyantechnoworld@gmail.com",
-//       subject:subject ,
-//       text:  body
-//     };
-//     // mg.messages().send(data, function (error, body) {
-//     //   console.log(body);
-//     // });
-//     mg.messages.create('sandbox-123.mailgun.org', {
-//       data,
-//       html: "<h1>Testing some Mailgun awesomeness!</h1>"
-//     })
-//     .then(msg => console.log(msg)) // logs response data
-//     .catch(err => console.log(err)); // logs any error
-//     res.send('Email sent successfully!');
-//   } catch (error) {
-//     console.error('Error sending email:', error);
-//     res.status(500).send('Failed to send email');
-//   }
-// };
+  try {
+   
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'shahnikunjsbit@gmail.com', // Replace with your email address
+        pass: 'umkl llnz kgkp nmpj' // Replace with your email password
+      }
+    });
+
+    const mailOptions = {
+      from: 'shahnikunjsbit@gmail.com',
+      to: req.body.email, // Replace with recipient email address
+      subject: 'Bill Of Your Order',
+      text: `Name: ${req.body.name}\nEmail: ${req.body.email}\nMessage: ${req.body.message}`,
+      attachments: [
+        {
+          filename: req.file.originalname,
+          path: req.file.path
+        }
+      ]
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).send('Error sending email');
+      } else {
+        console.log('Email sent:', info.response);
+        // Delete the file after sending the email
+        fs.unlink(req.file.path, (err) => {
+          if (err) {
+            console.error('Error deleting file:', err);
+          }
+        });
+        return res.status(200).send('Email sent successfully');
+      }
+    });
+  } catch (err) {
+    console.error('Error:', err);
+    return res.status(500).send('Internal Server Error');
+  }
+  
+};
 
 
 

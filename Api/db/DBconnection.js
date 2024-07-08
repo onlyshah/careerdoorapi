@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+ const Sequelize = require('sequelize');
 let sequelize = new Sequelize('careerdoor',
 'careerdoor',
  'mysql', {
@@ -8,3 +8,5 @@ let sequelize = new Sequelize('careerdoor',
 });
 
 module.exports = sequelize
+
+
