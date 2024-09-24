@@ -1,7 +1,7 @@
-let express = require('express');
-let app = express();
+var express = require('express');
+var app = express();
 app.use(express.json());
-let cors = require('cors');
+var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 const dbconnect= require('./Api/db/DBconnection.js');
@@ -65,9 +65,9 @@ jobApply.sync({ alter: true }) // Use { force: true } to drop and recreate table
 .catch((err) => {
   console.error('An error occurred while synchronizing the models:', err);
 });
-// let admin = require("firebase-admin");
+// var admin = require("firebase-admin");
 
-// let serviceAccount = require("./Api/db/firebasedatabase.json");
+// var serviceAccount = require("./Api/db/firebasedatabase.json");
 
 // admin.initializeApp({
 //   credential: admin.credential.cert(serviceAccount),
