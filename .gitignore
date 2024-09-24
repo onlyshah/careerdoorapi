@@ -15,7 +15,7 @@ Api/db/firebasedatabase.json
 
 # Log files
 *.log
-
+*.evm
 # Package files
 *.jar
 
